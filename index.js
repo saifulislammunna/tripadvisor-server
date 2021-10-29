@@ -23,6 +23,7 @@ async function run(){
         console.log('database connected');
         const database = client.db('tripAdvisor');
         const serviceCollection = database.collection('services');
+      /*   const servicesCollection = database.collection('') */
         const orderCollection  = database.collection('orders');
        /*  console.log(orderCollection); */
         // POST API 
@@ -38,7 +39,7 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         })
-         // Use POST to get data by keys
+         // Use POST to get data by _ids
           app.post('/services/byids', async (req, res) => {
              console.log(req.body);
           const _ids = req.body;
@@ -54,6 +55,15 @@ async function run(){
             const result = await orderCollection.insertOne(order);
             res.send('Order processed');
         })
+
+     /*    app.post("/myOrders", async (req,res) => {
+            const userEmail = req.body.userEmail;
+            const cursor = servicesCollection.find({}); 
+            const result = await cursor.toArray();            
+            const newResult = result.filter(newResult => newResult.email === userEmail);            
+           res.send(newResult);  
+          
+          }); */
 
 
     }
