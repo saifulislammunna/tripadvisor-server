@@ -23,8 +23,14 @@ async function run(){
         console.log('database connected');
         const database = client.db('tripAdvisor');
         const serviceCollection = database.collection('services');
-
-        
+        const orderCollection  = database.collection('orders');
+       /*  console.log(orderCollection); */
+        // POST API 
+      /*   app.post('/services', async(req,res) => {
+          console.log('hitting the post', req.body);
+            res.send('hit the post')
+        })
+         */
 
         // GET Products API 
         app.get('/services', async(req, res) => {
@@ -32,6 +38,23 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         })
+         // Use POST to get data by keys
+          app.post('/services/byids', async (req, res) => {
+             console.log(req.body);
+          const _ids = req.body;
+          const query = { _id: { $in: _ids} }
+          const products = await productCollection.find(query).toArray();
+          res.json(products);
+      }); 
+
+          // Add Orders API 
+          app.post('/orders', async(req,res) => {
+            const order = req.body;
+            console.log(order);
+            const result = await orderCollection.insertOne(order);
+            res.send('Order processed');
+        })
+
 
     }
     finally{
