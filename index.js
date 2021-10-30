@@ -56,6 +56,11 @@ async function run(){
             res.send('Order processed');
         })
 
+        // POST API
+        app.post('/services', async (req,res) => {
+          console.log('hit the post api');
+          res.send('post hitted')
+        })
      /*    app.post("/myOrders", async (req,res) => {
             const userEmail = req.body.userEmail;
             const cursor = servicesCollection.find({}); 
