@@ -28,6 +28,7 @@ async function run(){
         
         const orderCollection  = database.collection('orders');
         const hotelCollection = database.collection('hotels');
+        const nextTripCollection = database.collection('nextTrip')
        /*  console.log(orderCollection); */
         // POST API 
       /*   app.post('/services', async(req,res) => {
@@ -47,6 +48,12 @@ async function run(){
           const cursor = hotelCollection.find({});
           const hotels = await cursor.toArray();
           res.send(hotels);
+      });
+        // GET NextTrip api
+        app.get('/nextTrip', async(req, res) => {
+          const cursor = nextTripCollection.find({});
+          const nextTrips = await cursor.toArray();
+          res.send(nextTrips);
       });
         //  GET Single Service
       app.get('/services/:id', async(req, res) =>{
