@@ -44,12 +44,6 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         });
-        // GET orders API 
-        // app.get('/orders', async(req, res) => {
-        //     const cursor = orderCollection.find({});
-        //     const services = await cursor.toArray();
-        //     res.send(services);
-        // });
         // GET Hotels api
         app.get('/hotels', async(req, res) => {
           const cursor = hotelCollection.find({});
