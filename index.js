@@ -78,6 +78,16 @@ async function run(){
          console.log(result);
           res.send(result)
         })
+       
+        // DELETE API
+        app.delete('/services/:id', async(req,res) =>{
+          const id = req.params.id;
+          const query = {_id:ObjectId(id)};
+          const result = await serviceCollection.deleteOne(query);
+          res.json(result);
+  
+        })
+
      /*    app.post("/myOrders", async (req,res) => {
             const userEmail = req.body.userEmail;
             const cursor = servicesCollection.find({}); 
