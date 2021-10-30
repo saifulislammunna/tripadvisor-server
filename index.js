@@ -1,5 +1,7 @@
 const express = require('express')
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb');       
+ const ObjectId = require('mongodb').ObjectId;
+
 const cors = require('cors');
 require('dotenv').config()
 
@@ -33,20 +35,30 @@ async function run(){
         })
          */
 
-        // GET Products API 
+        // GET services API 
         app.get('/services', async(req, res) => {
             const cursor = serviceCollection.find({});
             const services = await cursor.toArray();
             res.send(services);
-        })
+        });
+        //  GET Single Service
+      app.get('/services/:id', async(req, res) =>{
+             const id = req.params.id;
+             console.log('getting specific service', id)
+             const query = {_id: ObjectId(id)};
+             const service = await serviceCollection.findOne(query)
+             res.json(service);
+
+     })
+
          // Use POST to get data by _ids
-          app.post('/services/byids', async (req, res) => {
+     /*      app.post('/services/byids', async (req, res) => {
              console.log(req.body);
           const _ids = req.body;
           const query = { _id: { $in: _ids} }
           const products = await productCollection.find(query).toArray();
           res.json(products);
-      }); 
+      });  */
 
           // Add Orders API 
           app.post('/orders', async(req,res) => {
@@ -64,7 +76,7 @@ async function run(){
         
         const result = await serviceCollection.insertOne(service);
          console.log(result);
-          res.send('post hitted')
+          res.send(result)
         })
      /*    app.post("/myOrders", async (req,res) => {
             const userEmail = req.body.userEmail;
