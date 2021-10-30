@@ -25,8 +25,9 @@ async function run(){
         console.log('database connected');
         const database = client.db('tripAdvisor');
         const serviceCollection = database.collection('services');
-      /*   const servicesCollection = database.collection('') */
+        
         const orderCollection  = database.collection('orders');
+        const hotelCollection = database.collection('hotels');
        /*  console.log(orderCollection); */
         // POST API 
       /*   app.post('/services', async(req,res) => {
@@ -41,6 +42,12 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         });
+        // GET Hotels api
+        app.get('/hotels', async(req, res) => {
+          const cursor = hotelCollection.find({});
+          const hotels = await cursor.toArray();
+          res.send(hotels);
+      });
         //  GET Single Service
       app.get('/services/:id', async(req, res) =>{
              const id = req.params.id;
