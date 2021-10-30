@@ -29,6 +29,7 @@ async function run(){
         const orderCollection  = database.collection('orders');
         const hotelCollection = database.collection('hotels');
         const nextTripCollection = database.collection('nextTrip')
+        const usersCollection = database.collection('users')
        /*  console.log(orderCollection); */
         // POST API 
       /*   app.post('/services', async(req,res) => {
@@ -101,15 +102,15 @@ async function run(){
           res.json(result);
   
         })
-
-     /*    app.post("/myOrders", async (req,res) => {
+        // users POST API
+        app.post("/users", async (req,res) => {
             const userEmail = req.body.userEmail;
-            const cursor = servicesCollection.find({}); 
+            const cursor = usersCollection.find({}); 
             const result = await cursor.toArray();            
             const newResult = result.filter(newResult => newResult.email === userEmail);            
            res.send(newResult);  
           
-          }); */
+          });
 
 
     }
