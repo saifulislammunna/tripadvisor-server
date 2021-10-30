@@ -52,13 +52,13 @@ async function run(){
      })
 
          // Use POST to get data by _ids
-     /*      app.post('/services/byids', async (req, res) => {
+          app.post('/services/byids', async (req, res) => {
              console.log(req.body);
           const _ids = req.body;
           const query = { _id: { $in: _ids} }
           const products = await productCollection.find(query).toArray();
           res.json(products);
-      });  */
+      });  
 
           // Add Orders API 
           app.post('/orders', async(req,res) => {
