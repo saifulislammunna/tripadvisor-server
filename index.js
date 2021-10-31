@@ -46,16 +46,9 @@ async function run(){
         });
         // GET orders API 
         app.get('/orders', async(req, res) => {
-          /* update something */
-          console.log(req.query);
-          let query = {};
-            const email = req.query.email;
-            if(email){
-               query = {email: email};
-            }
-            const cursor = orderCollection.find({query});
+            const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
-            res.json(orders);
+            res.send(orders);
         });
          
 
