@@ -51,11 +51,11 @@ async function run(){
             res.send(orders);
         });
            //  GET Single order
-       app.get('/services/:_id', async(req, res) =>{
+       app.get('/orders/:_id', async(req, res) =>{
         const id = req.params._id;
         console.log('getting specific order', id)
         const query = {_id: ObjectId(id)};
-        const sigleOrder = await  serviceCollection.findOne(query)
+        const sigleOrder = await  orderCollection.findOne(query)
         res.json(sigleOrder);
 
    }) 
@@ -102,10 +102,10 @@ async function run(){
         })
        
         // DELETE API
-        app.delete('/services/:_id', async(req,res) =>{
+        app.delete('/orders/:_id', async(req,res) =>{
           const id = req.params._id;
           const query = {_id:ObjectId(id)};
-          const result = await serviceCollection.deleteOne(query);
+          const result = await orderCollection.deleteOne(query);
           res.json(result);
   
         })
