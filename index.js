@@ -44,6 +44,12 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         });
+        // GET services API 
+        app.get('/orders', async(req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+        });
         // GET Hotels api
         app.get('/hotels', async(req, res) => {
           const cursor = hotelCollection.find({});
@@ -61,7 +67,7 @@ async function run(){
              const id = req.params.id;
              console.log('getting specific order', id)
              const query = {_id: ObjectId(id)};
-             const order = await orderCollection.findOne(query)
+             const sigleOrder = await singleOrderCollection.findOne(query)
              res.json(order);
 
      }) 
