@@ -64,7 +64,7 @@ async function run(){
        app.get('/orders/:email', async(req, res) =>{
         const mail = req.params.email;
         console.log('getting specific order', mail)
-        const query = {email: ObjectId(id)};
+        const query = {email: ObjectId(mail)};
         const sigleOrder = await  orderCollection.findOne(query)
         res.json(sigleOrder);
 
