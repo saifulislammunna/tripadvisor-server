@@ -50,9 +50,9 @@ async function run(){
             const orders = await cursor.toArray();
             res.send(orders);
         });
-        // GET orders API 
+        // GET orders email API 
         app.get('/orders/email', async(req, res) => {
-            const cursor = Collection.find({});
+            const cursor = orderCollection.find({});
             const emails = await cursor.toArray();
             res.send(emails);
         });
