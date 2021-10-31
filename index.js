@@ -44,12 +44,22 @@ async function run(){
             const services = await cursor.toArray();
             res.send(services);
         });
-        // GET services API 
+        // GET orders API 
         app.get('/orders', async(req, res) => {
             const cursor = orderCollection.find({});
             const orders = await cursor.toArray();
             res.send(orders);
         });
+           //  GET Single order
+       app.get('/orders/:_id', async(req, res) =>{
+        const id = req.params._id;
+        console.log('getting specific order', id)
+        const query = {_id: ObjectId(id)};
+        const sigleOrder = await  orderCollection.findOne(query)
+        res.send(sigleOrder);
+
+   }) 
+
         // GET Hotels api
         app.get('/hotels', async(req, res) => {
           const cursor = hotelCollection.find({});
@@ -62,16 +72,7 @@ async function run(){
           const nextTrips = await cursor.toArray();
           res.send(nextTrips);
       });
-        //  GET Single order
-       app.get('/orders/:id', async(req, res) =>{
-             const id = req.params.id;
-             console.log('getting specific order', id)
-             const query = {_id: ObjectId(id)};
-             const sigleOrder = await singleOrderCollection.findOne(query)
-             res.json(order);
-
-     }) 
-
+     
          // Use POST to get data by _ids
           app.post('/services/byids', async (req, res) => {
              console.log(req.body);
@@ -101,10 +102,10 @@ async function run(){
         })
        
         // DELETE API
-        app.delete('/services/:id', async(req,res) =>{
+        app.delete('/orders/:id', async(req,res) =>{
           const id = req.params.id;
           const query = {_id:ObjectId(id)};
-          const result = await serviceCollection.deleteOne(query);
+          const result = await orderCollection.deleteOne(query);
           res.json(result);
   
         })
