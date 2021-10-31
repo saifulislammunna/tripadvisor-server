@@ -59,6 +59,16 @@ async function run(){
         res.json(sigleOrder);
 
    }) 
+   /* new one */
+           //  GET Single order
+       app.get('/orders/:email', async(req, res) =>{
+        const mail = req.params.email;
+        console.log('getting specific order', mail)
+        const query = {email: ObjectId(id)};
+        const sigleOrder = await  orderCollection.findOne(query)
+        res.json(sigleOrder);
+
+   }) 
 
         // GET Hotels api
         app.get('/hotels', async(req, res) => {
@@ -106,6 +116,15 @@ async function run(){
           const id = req.params._id;
           const query = {_id:ObjectId(id)};
           const result = await orderCollection.deleteOne(query);
+          res.json(result);
+  
+        })
+        /* new one */
+        // DELETE API
+        app.delete('/orders/:email', async(req,res) =>{
+          const mail = req.params.email;
+          const query = {email:ObjectId(id)};
+          const result = await orderCollection.deleteOne(mail);
           res.json(result);
   
         })
