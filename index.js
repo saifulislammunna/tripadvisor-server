@@ -124,7 +124,7 @@ async function run(){
         app.delete('/orders/:email', async(req,res) =>{
           const mail = req.params.email;
           const query = {email:ObjectId(id)};
-          const result = await orderCollection.deleteOne(mail);
+          const result = await orderCollection.deleteOne(query);
           res.json(result);
   
         })
