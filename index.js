@@ -57,14 +57,14 @@ async function run(){
           res.send(nextTrips);
       });
         //  GET Single Service
-    /*   app.get('/services/:id', async(req, res) =>{
+       app.get('/services/:id', async(req, res) =>{
              const id = req.params.id;
              console.log('getting specific service', id)
              const query = {_id: ObjectId(id)};
-             const service = await serviceCollection.findOne(query)
+             const service = await orderCollection.findOne(query)
              res.json(service);
 
-     }) */
+     }) 
 
          // Use POST to get data by _ids
           app.post('/services/byids', async (req, res) => {
