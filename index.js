@@ -50,6 +50,13 @@ async function run(){
             const orders = await cursor.toArray();
             res.send(orders);
         });
+        // GET orders API 
+        app.get('/orders/email', async(req, res) => {
+            const cursor = Collection.find({});
+            const emails = await cursor.toArray();
+            res.send(emails);
+        });
+
            //  GET Single order
        app.get('/orders/:_id', async(req, res) =>{
         const id = req.params._id;
