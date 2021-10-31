@@ -59,16 +59,7 @@ async function run(){
         res.json(sigleOrder);
 
    }) 
-   /* new one */
-           //  GET Single order
-       app.get('/orders/:email', async(req, res) =>{
-        const mail = req.params.email;
-        console.log('getting specific order', mail)
-        const query = {email: ObjectId(mail)};
-        const sigleOrder = await  orderCollection.findOne(query)
-        res.json(sigleOrder);
-
-   }) 
+   
 
         // GET Hotels api
         app.get('/hotels', async(req, res) => {
@@ -102,14 +93,8 @@ async function run(){
             res.send('Order processed');
         })
 
-        /* new one */
-          app.post('/orders/:email', async(req,res) => {
-            const orders = req.body;
-            console.log(orders);
-            const result = await orderCollection.insertOne(orders);
-            res.send('Order processed');
-        })
 
+         
         // POST API
         app.post('/services', async (req,res) => {
            
@@ -129,24 +114,8 @@ async function run(){
           res.json(result);
   
         })
-        /* new one */
-        // DELETE API
-        app.delete('/orders/:email', async(req,res) =>{
-          const mail = req.params.email;
-          const query = {email:ObjectId(id)};
-          const result = await orderCollection.deleteOne(query);
-          res.json(result);
-  
-        })
-        // users POST API
-        /* app.post("/users", async (req,res) => {
-            const userEmail = req.body.userEmail;
-            const cursor = usersCollection.find({}); 
-            const result = await cursor.toArray();            
-            const newResult = result.filter(newResult => newResult.email === userEmail);            
-           res.send(newResult);  
-          
-          }); */
+        
+       
 
 
     }
