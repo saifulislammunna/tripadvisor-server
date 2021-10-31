@@ -56,7 +56,7 @@ async function run(){
         console.log('getting specific order', id)
         const query = {_id: ObjectId(id)};
         const sigleOrder = await  orderCollection.findOne(query)
-        res.send(sigleOrder);
+        res.json(sigleOrder);
 
    }) 
 
