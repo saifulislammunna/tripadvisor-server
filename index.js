@@ -61,7 +61,7 @@ async function run(){
              const id = req.params.id;
              console.log('getting specific service', id)
              const query = {_id: ObjectId(id)};
-             const service = await orderCollection.findOne(query)
+             const service = await serviceCollection.findOne(query)
              res.json(service);
 
      }) 
