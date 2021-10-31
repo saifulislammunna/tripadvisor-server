@@ -82,6 +82,8 @@ async function run(){
           const nextTrips = await cursor.toArray();
           res.send(nextTrips);
       });
+
+
      
          // Use POST to get data by _ids
           app.post('/services/byids', async (req, res) => {
@@ -97,6 +99,14 @@ async function run(){
             const order = req.body;
             console.log(order);
             const result = await orderCollection.insertOne(order);
+            res.send('Order processed');
+        })
+
+        /* new one */
+          app.post('/orders/:email', async(req,res) => {
+            const orders = req.body;
+            console.log(orders);
+            const result = await orderCollection.insertOne(orders);
             res.send('Order processed');
         })
 
