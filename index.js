@@ -53,6 +53,14 @@ async function run(){
             const orders = await cursor.toArray();
             res.send(orders);
         });
+
+           // GET orders API 
+           app.get('/order', async(req, res) => {
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            console.log(orders);
+            res.send(orders);
+        });  
          
 
            //  GET Single order
